@@ -1,0 +1,26 @@
+:root {
+  /* Colors */
+  --color-primary: #022959;
+  --color-secondary: #483eff;
+  --color-secondary-muted: #abbcff;
+  --color-accent: #bee2fd;
+  --color-danger: #ee374a;
+  --color-text: var(--color-primary);
+  --color-text-muted: #9699aa;
+  --color-border: #d6d9e6;
+  --color-background: #eff5ff;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8f9ff;
+
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing scale: use for padding, margin, and gap. */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+}

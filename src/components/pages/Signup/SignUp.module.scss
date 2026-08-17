@@ -1,0 +1,28 @@
+.mobileOnly {
+ display: none;
+
+ @media (max-width: 768px) {
+  display: block;
+ }
+
+}
+
+.desktopOnly {
+  display: block;
+  padding: var(--spacing-sm);
+ 
+ @media (max-width: 768px) {
+  display: none;
+ }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
+
+.gridItem {
+  padding: 1rem;
+  border: 1px solid #ccc;
+}

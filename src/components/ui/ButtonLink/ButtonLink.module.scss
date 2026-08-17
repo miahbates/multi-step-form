@@ -1,0 +1,18 @@
+.button {
+  font: inherit;
+  border-radius: 8px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+   &:hover {
+    cursor:pointer;
+  }
+}
+
+
+.primaryButton {
+  background: var(--color-primary);
+  color: white;
+}
