@@ -20,9 +20,10 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 1rem;
+  min-height: calc(100vh - var(--spacing-lg));
 }
 
 .gridItem {
-  padding: 1rem;
-  border: 1px solid #ccc;
+  padding: var(--spacing-sm);
+  display: flex;
 }
