@@ -4,13 +4,35 @@ import styles from "./SignUp.module.scss";
 import SignUpList from "./SignUpList/SignUpList";
 import { SignUpSection } from "@/types/types";
 
+export const steps = [
+  { step: 1, title: "YOUR INFO", label: "info" },
+  { step: 2, title: "SELECT PLAN", label: "plan" },
+  { step: 3, title: "ADD-ONS", label: "addons" },
+  { step: 4, title: "SUMMARY", label: "summary" },
+];
+
 const SignUp = () => {
   const [signUpSection, setSignUpSection] = useState<SignUpSection>("info");
+  const [personalInfo, setPersonalInfo] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
 
   const renderDetailSection = () => {
     switch (signUpSection) {
       case "info":
-        return <PersonalInfo />;
+        return (
+          <PersonalInfo
+            values={personalInfo}
+            onChange={(field, value) => {
+              setPersonalInfo((current) => ({
+                ...current,
+                [field]: value,
+              }));
+            }}
+          />
+        );
       case "plan":
         return <div>Plan Section</div>;
       case "addons":
@@ -27,67 +49,31 @@ const SignUp = () => {
       <div className={styles.desktopOnly}>
         <div className={styles.grid}>
           <div className={styles.gridItem}>
-            <SignUpList />
+            <SignUpList
+              signUpSection={signUpSection}
+              setSignUpSection={setSignUpSection}
+            />
           </div>
           <div className={styles.gridItem}>{renderDetailSection()}</div>
         </div>
-        {/* <Grid w="100%" gap={0}>
-            <Grid.Col
-              span={listSpan}
-              className={classNames(classes.col, classes.sidebar)}
-              style={{ minWidth: "260px" }}
-            >
-              {listLoading ? <Loading /> : list}
-            </Grid.Col>
-
-            <Grid.Col
-              span={detailSpan}
-              className={classNames(classes.col, classes.mainContent)}
-            >
-              {detailLoading ? <Loading /> : detail}
-            </Grid.Col>
-          </Grid> */}
       </div>
-      <div className={styles.mobileOnly}>Mobile content</div>
-      {/* {isMobile ? (
-        <Box mx={20}>
-          {view === ProfileView.LIST ? (
-            <Box>
-              <Text
-                size="32px"
-                lh="40px"
-                fw={700}
-                my="lg"
-                c={theme.colors.blue[8]}
-              >
-                {header}
-              </Text>
-              {listLoading ? <Loading /> : list}
-            </Box>
-          ) : (
-            <Box> {detailLoading ? <Loading /> : detail}</Box>
-          )}
-        </Box>
-      ) : (
-        <Box className={classes.wrapper}>
-          <Grid w="100%" gap={0}>
-            <Grid.Col
-              span={listSpan}
-              className={classNames(classes.col, classes.sidebar)}
-              style={{ minWidth: "260px" }}
-            >
-              {listLoading ? <Loading /> : list}
-            </Grid.Col>
-
-            <Grid.Col
-              span={detailSpan}
-              className={classNames(classes.col, classes.mainContent)}
-            >
-              {detailLoading ? <Loading /> : detail}
-            </Grid.Col>
-          </Grid>
-        </Box>
-      )} */}
+      <div className={styles.mobileOnly}>
+        <div className={styles.mobileBanner}>
+          <ol className={styles.mobileSteps}>
+            {steps.map((step) => (
+              <li key={step.step}>
+                <button
+                  className={styles.stepNumber}
+                  data-active={step.label === signUpSection}
+                >
+                  {step.step}
+                </button>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div className={styles.mobileContent}>{renderDetailSection()}</div>
+      </div>
     </>
   );
 };

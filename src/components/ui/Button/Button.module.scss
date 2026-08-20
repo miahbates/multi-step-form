@@ -1,6 +1,7 @@
 .button {
   font: inherit;
   border-radius: 8px;
+  border: none;
 
   &:hover {
     cursor:pointer;
@@ -11,4 +12,5 @@
 .primaryButton {
   background: var(--color-primary);
   color: white;
+ 
 }

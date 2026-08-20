@@ -1,20 +1,31 @@
+import classNames from "classnames";
 import styles from "./SignUpList.module.scss";
+import { Dispatch, SetStateAction } from "react";
+import { SignUpSection } from "@/types/types";
+import { steps } from "../SignUp";
 
-const SignUpList = () => {
-  const steps = [
-    { step: 1, title: "YOUR INFO" },
-    { step: 2, title: "SELECT PLAN" },
-    { step: 3, title: "ADD-ONS" },
-    { step: 4, title: "SUMMARY" },
-  ];
+interface ISignUpListProps {
+  signUpSection: string;
+  setSignUpSection: Dispatch<SetStateAction<SignUpSection>>;
+}
 
+const SignUpList = ({ signUpSection, setSignUpSection }: ISignUpListProps) => {
   return (
     <div className={styles.signUpList}>
       <ol>
         {steps.map((step) => (
           <li key={step.step} className={styles.listItem}>
-            <button className={styles.stepButton}>
-              <div className={styles.stepNumber}>{step.step}</div>
+            <button
+              className={styles.stepButton}
+              onClick={() => setSignUpSection(step.label as SignUpSection)}
+            >
+              <div
+                className={classNames(styles.stepNumber, {
+                  [styles.active]: step.label === signUpSection,
+                })}
+              >
+                {step.step}
+              </div>
               <div className={styles.stepText}>
                 <p className={styles.stepLabel}>STEP {step.step}</p>
                 <p className={styles.stepTitle}>{step.title}</p>
